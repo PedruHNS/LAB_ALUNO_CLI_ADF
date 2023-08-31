@@ -25,16 +25,15 @@ class Student {
       'id': id,
       'name': name,
       'nameCourses': nameCourses,
-      'age': age != null ? age as int : null,
       //abaixo temos uma lsita de objetos, então devemos percorrer
       // cada objeto dessa lista, transformando eles em Map
       'courses': courses.map((course) => course.toMap()).toList(),
       'address': address.toMap(),
     };
 
-    // if (age != null) {
-    //   map['age'] = age;
-    // }
+    if (age != null) {
+      map['age'] = age;
+    }
     return map;
   }
 

@@ -3,19 +3,19 @@ import 'dart:convert';
 class Course {
   final int id;
   final String name;
-  final bool isStutant;
+  final bool isStudent;
 
   Course({
     required this.id,
     required this.name,
-    required this.isStutant,
+    required this.isStudent,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'name': name,
-      'isStutant': isStutant,
+      'isStutdent': isStudent,
     };
   }
 
@@ -25,7 +25,7 @@ class Course {
     return Course(
       id: map['id'] ?? 0,
       name: map['name'] ?? '',
-      isStutant: map['isStutant'] ?? false,
+      isStudent: map['isStudent'] ?? false,
     );
   }
 

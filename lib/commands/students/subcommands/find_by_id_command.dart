@@ -36,7 +36,7 @@ class FindByIdCommand extends Command {
     final showCourses = stdin.readLineSync();
     if (showCourses?.toLowerCase() == 's') {
       print('''${student.id} - ${student.name}
-        ${student.courses.where((course) => course.isStutant == true).map((e) => e.name).toList()}''');
+        ${student.courses.where((element) => element.isStudent).map((e) => e.name).toList()}''');
     } else {
       print('${student.id} - ${student.name}');
     }

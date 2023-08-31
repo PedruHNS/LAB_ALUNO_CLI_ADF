@@ -1,5 +1,3 @@
-
-
 import 'package:args/command_runner.dart';
 
 import 'package:lab_aluno_cli/repositories/student_repository.dart';
@@ -8,7 +6,7 @@ import 'dart:io';
 
 class FindAllCommand extends Command {
   final StudentRepository repository;
-  
+
   FindAllCommand({required this.repository});
 
   @override
@@ -30,8 +28,7 @@ class FindAllCommand extends Command {
     for (var student in students) {
       if (showCourses?.toLowerCase() == 's') {
         print('''${student.id} - ${student.name}
-        ${student.courses.where((course) => course.isStutant == true).map((e) => e.name).toList()}
-        
+        ${student.courses.where((element) => element.isStudent).map((e) => e.name).toList()}
         ''');
       } else {
         print('${student.id} - ${student.name}');

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lab_aluno_cli/models/studant.dart';
+import 'package:lab_aluno_cli/models/student.dart';
 import 'package:http/http.dart' as http;
 
 class StudentRepository {
@@ -15,7 +15,7 @@ class StudentRepository {
     final responseData = jsonDecode(response.body);
 
     return responseData
-        .map<Student>((studant) => Student.fromMap(studant))
+        .map<Student>((student) => Student.fromMap(student))
         .toList();
   }
 
