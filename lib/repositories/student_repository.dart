@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:lab_aluno_cli/models/studant.dart';
 import 'package:http/http.dart' as http;
 
-class StudantRepository {
+class StudentRepository {
   static final url = 'http://localhost:8080/studants';
-  Future<List<Studant>> findAll() async {
+  Future<List<Student>> findAll() async {
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode != 200) {
@@ -15,11 +15,11 @@ class StudantRepository {
     final responseData = jsonDecode(response.body);
 
     return responseData
-        .map<Studant>((studant) => Studant.fromMap(studant))
+        .map<Student>((studant) => Student.fromMap(studant))
         .toList();
   }
 
-  Future<Studant> findById(int id) async {
+  Future<Student> findById(int id) async {
     final response = await http.get(Uri.parse('$url/$id'));
 
     if (response.statusCode != 200) {
@@ -30,10 +30,10 @@ class StudantRepository {
       throw Exception('ID invalido');
     }
 
-    return Studant.fromJson(response.body);
+    return Student.fromJson(response.body);
   }
 
-  Future<void> insert(Studant studant) async {
+  Future<void> insert(Student studant) async {
     final response = await http.post(Uri.parse(url),
         body: studant.toJson(), headers: {'content-type': 'application/json'});
 
@@ -42,9 +42,12 @@ class StudantRepository {
     }
   }
 
-  Future<void> update(Studant studant) async {
-    final response = await http.post(Uri.parse('$url/${studant.id}'),
-        body: studant.toJson(), headers: {'content-type': 'application/json'});
+  Future<void> update(Student studant) async {
+    final response = await http.put(
+      Uri.parse('$url/${studant.id}'),
+      body: studant.toJson(),
+      headers: {'content-type': 'application/json'},
+    );
 
     if (response.statusCode != 200) {
       throw Exception('erro na requisição');

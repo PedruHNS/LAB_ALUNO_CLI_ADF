@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:lab_aluno_cli/models/address.dart';
 import 'package:lab_aluno_cli/models/course.dart';
 
-class Studant {
+class Student {
   final int? id;
   final String name;
   final int? age;
@@ -11,7 +11,7 @@ class Studant {
   final List<Course> courses;
   final Address address;
 
-  Studant({
+  Student({
     this.id,
     required this.name,
     this.age,
@@ -40,8 +40,8 @@ class Studant {
 
   String toJson() => jsonEncode(toMap());
 
-  factory Studant.fromMap(Map<String, dynamic> map) {
-    return Studant(
+  factory Student.fromMap(Map<String, dynamic> map) {
+    return Student(
       id: map['id'] ?? 0,
       name: map['name'] ?? '',
       //aqui fizemos a conversão de uma lista dynamic para String
@@ -54,5 +54,5 @@ class Studant {
     );
   }
 
-  factory Studant.fromJson(String json) => Studant.fromMap(jsonDecode(json));
+  factory Student.fromJson(String json) => Student.fromMap(jsonDecode(json));
 }
