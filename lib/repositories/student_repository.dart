@@ -4,7 +4,7 @@ import 'package:lab_aluno_cli/models/studant.dart';
 import 'package:http/http.dart' as http;
 
 class StudentRepository {
-  static final url = 'http://localhost:8080/studants';
+  static final url = 'http://localhost:8080/students';
   Future<List<Student>> findAll() async {
     final response = await http.get(Uri.parse(url));
 
