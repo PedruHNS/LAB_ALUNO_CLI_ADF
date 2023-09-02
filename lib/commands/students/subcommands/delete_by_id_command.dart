@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:lab_aluno_cli/repositories/student_repository.dart';
@@ -8,7 +7,11 @@ class DeleteByIdCommand extends Command {
   final StudentRepository repository;
 
   DeleteByIdCommand({required this.repository}) {
-    argParser.addOption('id', help: 'Student ID', abbr: 'i');
+    argParser.addOption(
+      'id',
+      help: 'Student ID',
+      abbr: 'i',
+    );
   }
   @override
   String get description => 'Delete By ID Student';

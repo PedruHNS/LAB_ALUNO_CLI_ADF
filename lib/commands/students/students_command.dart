@@ -19,8 +19,8 @@ class StudentsCommand extends Command {
     final studentRepository = StudentRepository();
     addSubcommand(FindAllCommand(repository: studentRepository));
     addSubcommand(FindByIdCommand(repository: studentRepository));
-    addSubcommand(InsertCommand());
-    addSubcommand(UpdateCommand());
+    addSubcommand(InsertCommand(repository: studentRepository));
+    addSubcommand(UpdateCommand(repository: studentRepository));
     addSubcommand(DeleteByIdCommand(repository: studentRepository));
   }
 }
