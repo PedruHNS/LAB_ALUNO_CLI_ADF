@@ -7,6 +7,7 @@ import '../../../repositories/student_repository.dart';
 class InsertCommand extends Command {
   final StudentRepository repository;
   InsertCommand({required this.repository}) {
+    //argParser.addMultiOption(name);
     argParser.addOption(
       'name',
       abbr: 'n',
