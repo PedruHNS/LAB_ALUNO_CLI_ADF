@@ -5,7 +5,7 @@ import 'package:lab_aluno_cli/commands/students/subcommands/insert_command.dart'
 import 'package:lab_aluno_cli/commands/students/subcommands/update_command.dart';
 
 import 'package:lab_aluno_cli/repositories/student_repository.dart';
-import 'package:lab_aluno_cli/services/http_packege.dart';
+import 'package:lab_aluno_cli/services/dio_packege.dart';
 
 import 'subcommands/find_by_id_command.dart';
 
@@ -17,7 +17,7 @@ class StudentsCommand extends Command {
   String get name => 'students';
 
   StudentsCommand() {
-    final studentRepository = StudentRepository(client: HttpPackege());
+    final studentRepository = StudentRepository(client: DioPackege());
 
     addSubcommand(FindAllCommand(repository: studentRepository));
     addSubcommand(FindByIdCommand(repository: studentRepository));

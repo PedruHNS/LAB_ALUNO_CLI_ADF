@@ -4,8 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:lab_aluno_cli/services/http_client_interface.dart';
 
 class DioPackege implements IHttpClient {
-  final Dio client;
-  DioPackege({required this.client});
+  final client = Dio();
 
   @override
   Future<void> delete({required String url}) async {
@@ -15,7 +14,13 @@ class DioPackege implements IHttpClient {
   @override
   Future get({required String url}) async {
     try {
-      return await client.get(url);
+      final response = await client.get(url);
+
+      if (response.data == null) {
+        throw Exception('não encontrado');
+      } else {
+        return response.data;
+      }
     } on DioException {
       throw Exception();
     }
