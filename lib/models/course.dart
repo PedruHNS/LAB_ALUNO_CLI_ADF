@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 class Course {
-  final int id;
-  final String name;
-  final bool isStudent;
+  int id;
+  String name;
+  bool isStudent;
 
   Course({
     required this.id,

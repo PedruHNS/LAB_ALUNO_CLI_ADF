@@ -17,7 +17,7 @@ class ProductRepository {
     final responseData = jsonDecode(response.body);
 
     if (responseData.isEmpty) {
-      throw Exception('produto não encontrado');
+      throw Exception('curso não encontrado');
     }
 
     return Course.fromMap(responseData.first);

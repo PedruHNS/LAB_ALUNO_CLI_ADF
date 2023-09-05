@@ -35,10 +35,12 @@ class FindByIdCommand extends Command {
     print('deseja mostrar os cursos do $id ? (S ou N)');
     final showCourses = stdin.readLineSync();
     if (showCourses?.toLowerCase() == 's') {
+      print('|||||||||||||||||||| Aluno |||||||||||||||||||||');
       print('''${student.id} - ${student.name}
-        ${student.courses.where((element) => element.isStudent).map((e) => e.name).toList()}''');
+        cursos: ${student.courses.where((element) => element.isStudent).map((e) => e.name).toList()}''');
     } else {
-      print('${student.id} - ${student.name}');
+      print('|||||||||||||||||||| Aluno |||||||||||||||||||||');
+      print('${student.id} -  ${student.name}');
     }
   }
 }

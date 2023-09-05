@@ -4,6 +4,7 @@ import 'package:lab_aluno_cli/commands/students/subcommands/find_all_command.dar
 import 'package:lab_aluno_cli/commands/students/subcommands/insert_command.dart';
 import 'package:lab_aluno_cli/commands/students/subcommands/update_command.dart';
 
+
 import 'package:lab_aluno_cli/repositories/student_repository.dart';
 
 import 'subcommands/find_by_id_command.dart';
@@ -17,6 +18,7 @@ class StudentsCommand extends Command {
 
   StudentsCommand() {
     final studentRepository = StudentRepository();
+
     addSubcommand(FindAllCommand(repository: studentRepository));
     addSubcommand(FindByIdCommand(repository: studentRepository));
     addSubcommand(InsertCommand(repository: studentRepository));
