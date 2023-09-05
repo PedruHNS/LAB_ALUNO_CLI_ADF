@@ -10,16 +10,21 @@ class HttpPackege implements IHttpClient {
   @override
   Future<void> delete({required String url}) async {
     final response = await client.delete(Uri.parse(url));
-    //! tratar erros
-    response.body;
+    if (response.statusCode == 200) {
+      print('sucesso');
+    } else {
+      throw Exception('erro ao deletar ${response.statusCode}');
+    }
   }
 
   @override
   Future get({required String url}) async {
     final response = await client.get(Uri.parse(url));
-    //!tratar erros
-
-    return jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('erro ao fazer a requisição ${response.statusCode}');
+    }
   }
 
   @override
@@ -28,12 +33,17 @@ class HttpPackege implements IHttpClient {
     Object? body,
     Map<String, String>? headers,
   }) async {
-    await client.post(
+    final response = await client.post(
       Uri.parse(url),
       body: body,
       headers: headers,
     );
-    //!tratar erros
+
+    if (response.statusCode == 200) {
+      print('sucesso');
+    } else {
+      throw Exception('erro ao inserir ${response.statusCode}');
+    }
   }
 
   @override
@@ -42,11 +52,16 @@ class HttpPackege implements IHttpClient {
     Object? body,
     Map<String, String>? headers,
   }) async {
-    await client.put(
+    final response = await client.put(
       Uri.parse(url),
       body: body,
       headers: headers,
     );
-    //!tratar erros
+
+    if (response.statusCode == 200) {
+      print('sucesso');
+    } else {
+      throw Exception('erro ao inserir ${response.statusCode}');
+    }
   }
 }
