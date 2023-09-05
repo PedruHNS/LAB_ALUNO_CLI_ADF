@@ -1,64 +1,42 @@
-import 'dart:convert';
-
 import 'package:lab_aluno_cli/models/student.dart';
-import 'package:http/http.dart' as http;
+import 'package:lab_aluno_cli/services/http_client_interface.dart';
 
 class StudentRepository {
+  IHttpClient client;
   static final url = 'http://localhost:8080/students';
+
+  StudentRepository({required this.client});
+
   Future<List<Student>> findAll() async {
-    final response = await http.get(Uri.parse(url));
+    final response = await client.get(url: url);
 
-    if (response.statusCode != 200) {
-      throw Exception('erro ao acessar o servidor');
-    }
-
-    final responseData = jsonDecode(response.body);
-
-    return responseData
+    return response
         .map<Student>((student) => Student.fromMap(student))
         .toList();
   }
 
   Future<Student> findById(int id) async {
-    final response = await http.get(Uri.parse('$url/$id'));
+    final response = await client.get(url: '$url/$id');
 
-    if (response.statusCode != 200) {
-      throw Exception('erro ao fazer a requisição');
-    }
-
-    if (response.body == '{}') {
-      throw Exception('ID invalido');
-    }
-
-    return Student.fromJson(response.body);
+    return Student.fromJson(response);
   }
 
   Future<void> insert(Student studant) async {
-    final response = await http.post(Uri.parse(url),
-        body: studant.toJson(), headers: {'content-type': 'application/json'});
-
-    if (response.statusCode != 200) {
-      throw Exception('erro na requisicao');
-    }
+    await client.post(
+        url: url,
+        body: studant.toJson(),
+        headers: {'content-type': 'application/json'});
   }
 
   Future<void> update(Student studant) async {
-    final response = await http.put(
-      Uri.parse('$url/${studant.id}'),
+    await client.put(
+      url: '$url/${studant.id}',
       body: studant.toJson(),
       headers: {'content-type': 'application/json'},
     );
-
-    if (response.statusCode != 200) {
-      throw Exception('erro na requisição');
-    }
   }
 
   Future<void> deleteById(int id) async {
-    final response = await http.delete(Uri.parse('$url/$id'));
-
-    if (response.statusCode != 200) {
-      throw Exception('erro na requisição');
-    }
+    await client.delete(url: '$url/$id');
   }
 }
